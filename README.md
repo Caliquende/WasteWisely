@@ -1,84 +1,74 @@
-# 🗑️ WasteWise — Dijital Atık Denetçisi
+# 🗑️ WasteWise — Digital Waste Auditor
 
-Dosya sisteminizi tarayarak **dijital atıkları** tespit eden ve temizlik önerileri sunan akıllı araç.
+A smart tool that scans your file system to detect **digital waste** and provides cleaning suggestions.
 
-## ✨ Özellikler
+[🇹🇷 Türkçe dökümantasyon için tıklayın (README_TR.md)](README_TR.md)
 
-| Kategori | Tespit Edilen |
+## ✨ Features
+
+| Category | Detected Items |
 |---|---|
-| 📦 **Ağır Bağımlılıklar** | `node_modules`, `.venv`, `target`, `build` vb. |
-| 🔑 **Hassas Sızıntılar** | `.env`, `.pem`, `id_rsa`, `credentials.json` |
-| 👻 **Hayalet Dosyalar** | `.DS_Store`, `Thumbs.db`, `.log`, `.tmp` |
-| 🕸️ **Unutulmuş Projeler** | 6+ aydır dokunulmamış git repoları |
-| 💾 **Büyük Dosyalar** | 50 MB+ dosyalar |
+| 📦 **Heavy Dependencies** | `node_modules`, `.venv`, `target`, `build`, etc. |
+| 🔑 **Sensitive Leaks** | `.env`, `.pem`, `id_rsa`, `credentials.json` |
+| 👻 **Ghost Files** | `.DS_Store`, `Thumbs.db`, `.log`, `.tmp` |
+| 🕸️ **Stale Projects** | Large files/projects untouched for 90+ days |
+| 💾 **Large Files** | 500 MB+ files |
 
-## 🚀 Kurulum
+## 🚀 Installation
 
 ```bash
 cd WasteWise
 pip install -r requirements.txt
 ```
 
-### Geliştirme ve UI Testleri
-```bash
-pip install -r requirements-dev.txt
-python -m playwright install chromium
-```
-
-### Desktop / Build Araçları
+### Desktop / Build Tools
 ```bash
 pip install -r requirements-build.txt
 ```
 
-## 💻 Kullanım
+## 💻 Usage
 
-### CLI ile Tarama
+### Desktop App (Recommended)
+Run the bundled installer `dist/WasteWise_Installer.exe` or launch via:
 ```bash
-cd src
-python main.py scan C:\Users\Can\work
+python src/main.py app
+```
+
+### CLI Scan
+```bash
+python src/main.py scan C:\path\to\scan
 ```
 
 ### Web Dashboard
 ```bash
-cd src
-python api.py
-# Tarayıcıda http://localhost:8000 adresini aç
+python src/main.py serve
+# Open http://localhost:8000 in your browser
 ```
 
-### Varsayılan Başlatma
+## 🧪 Tests
 ```bash
-python src/main.py
-```
-
-Not:
-- `pywebview` yüklüyse desktop app açılır.
-- Değilse güvenli varsayılan olarak yerel web sunucusu (`serve`) başlar.
-
-## 🧪 Testler
-```bash
-cd WasteWise
 python -m pytest tests -v
 ```
 
-## 📁 Proje Yapısı
+## 📁 Project Structure
 ```
 WasteWise/
 ├── src/
-│   ├── scanner.py      # Dosya sistemi tarama motoru
-│   ├── classifier.py   # Atık sınıflandırma mantığı
-│   ├── actions.py      # Güvenli silme/arşivleme
+│   ├── scanner.py      # File system scanning engine
+│   ├── classifier.py   # Waste classification logic
+│   ├── actions.py      # Secure delete/archive actions
 │   ├── api.py          # FastAPI backend
-│   └── main.py         # CLI arayüzü
+│   └── main.py         # CLI & App entrypoint
 ├── frontend/
-│   ├── index.html      # Dashboard HTML
+│   ├── index.html      # Dashboard UI
 │   ├── style.css       # Premium dark theme
 │   └── app.js          # Frontend controller
 ├── tests/
 │   ├── test_scanner.py
 │   └── test_classifier.py
 ├── docs/
-│   ├── spec.md         # Ürün spesifikasyonu
-│   └── architecture.md # Teknik mimari
+│   ├── spec.md         # Product specification
+│   └── architecture.md # Technical architecture
 ├── requirements.txt
 └── README.md
 ```
