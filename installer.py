@@ -265,6 +265,14 @@ class InstallerWizard:
         self.root.title("WasteWisely Kurulum Sihirbazı")
         self.root.geometry("620x360")
         self.root.resizable(False, False)
+
+        icon_path = self._get_resource_path("assets/icon.ico")
+        if os.path.exists(icon_path):
+            try:
+                self.root.iconbitmap(icon_path)
+            except Exception:
+                pass
+
         self.root.eval("tk::PlaceWindow . center")
 
         self.install_dir_var = tk.StringVar(value=str(default_install_dir()))
@@ -506,6 +514,16 @@ class InstallerWizard:
 
     def run(self):
         self.root.mainloop()
+
+    def _get_resource_path(self, relative_path):
+        """Get absolute path to resource, works for dev and for PyInstaller."""
+        try:
+            # PyInstaller creates a temp folder and stores path in _MEIPASS
+            base_path = sys._MEIPASS
+        except Exception:
+            base_path = os.path.abspath(".")
+
+        return os.path.join(base_path, relative_path)
 
 
 def launch_gui():

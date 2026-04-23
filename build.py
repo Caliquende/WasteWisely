@@ -80,11 +80,13 @@ pyinstaller_cmd = [
     "--name=WasteWisely",
     "--onefile",
     "--windowed", # Don't open console when double clicked (UI runs in pywebview)
+    "--icon=assets/icon.ico",
     "--specpath", ROOT,
     "--workpath", BUILD_DIR,
     "--distpath", DIST_DIR,
     "--paths=src",
     "--add-data=frontend;frontend",
+    "--add-data=assets/icon.ico;assets",
     "--hidden-import=api",
     "--hidden-import=actions",
     "--hidden-import=scanner",
@@ -115,10 +117,12 @@ installer_cmd = [
     "--onefile",
     "--windowed",
     "--uac-admin",
+    "--icon=assets/icon.ico",
     "--specpath", ROOT,
     "--workpath", BUILD_DIR,
     "--distpath", DIST_DIR,
     "--add-data=dist/WasteWisely.exe;.",
+    "--add-data=assets/icon.ico;assets",
     "installer.py"
 ]
 

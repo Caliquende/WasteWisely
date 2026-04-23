@@ -184,8 +184,20 @@ def run_app():
     
     time.sleep(1.5)  # Sunucunun kalkmasi icin kisa bekleme
     js_api = JSApi()
+    
+    icon_path = _get_resource_path("assets/icon.ico")
     webview.create_window('WasteWisely Desktop', f'http://127.0.0.1:{port}', js_api=js_api, width=1200, height=800)
+    
+    # Start webview with icon if possible (pywebview handles icon via start on some platforms, but EXE icon is usually enough)
     webview.start()
+
+def _get_resource_path(relative_path):
+    """Get absolute path to resource, works for dev and for PyInstaller."""
+    try:
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+    return os.path.join(base_path, relative_path)
 
 def run_daemon(target_path: str):
     """Arka planda klasoru izleyen ve belli araliklarla tarama yapan akilli daemon modu."""
