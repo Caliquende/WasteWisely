@@ -1,86 +1,84 @@
-# 🗑️ WasteWise — Dijital Atık Denetçisi
+# 🗑️ WasteWise — Profesyonel Dijital Atık Denetçisi
+
+WasteWise, "dijital atıkları" tespit etmek ve temizlemek için tasarlanmış yüksek performanslı bir Windows masaüstü uygulamasıdır. Sadece geçici dosyaları silmekle kalmaz; yazılım geliştirme kalıntılarını, hassas veri sızıntılarını ve bayatlamış büyük dosyaları akıllıca sınıflandırır.
 
 [🇺🇸 Click for English documentation (README.md)](README.md)
 
-Dosya sisteminizi tarayarak **dijital atıkları** tespit eden ve temizlik önerileri sunan akıllı araç.
+---
 
-## ✨ Özellikler
+## ✨ Temel Özellikler
 
-| Kategori | Tespit Edilen |
-|---|---|
-| 📦 **Ağır Bağımlılıklar** | `node_modules`, `.venv`, `target`, `build` vb. |
-| 🔑 **Hassas Sızıntılar** | `.env`, `.pem`, `id_rsa`, `credentials.json` |
-| 👻 **Hayalet Dosyalar** | `.DS_Store`, `Thumbs.db`, `.log`, `.tmp` |
-| 🕸️ **Unutulmuş Projeler** | 6+ aydır dokunulmamış git repoları |
-| 💾 **Büyük Dosyalar** | 50 MB+ dosyalar |
+### 🚀 Performans ve Arayüz
+- **Native Desktop App:** Python & FastAPI tabanlı, `pywebview` ile sarmalanmış bağımsız pencere deneyimi.
+- **Yerel Windows Diyalogları:** Sistem klasör seçicileriyle tam entegrasyon.
+- **Dinamik Dashboard:** Donut grafikler ve etkileşimli Treemap (Alan Haritası) ile veri görselleştirme.
+- **Çoklu Dil Desteği:** Türkçe, İngilizce ve Arapça (RTL desteği dahil) tam lokalizasyon.
 
-## 🚀 Kurulum
+### 🔍 Akıllı Tarama Motoru
+- **Ağır Bağımlılıklar:** `node_modules`, `.venv` ve devasa build klasörlerini saptar.
+- **Hassas Sızıntılar:** Açıkta kalan `.env`, private key ve kimlik bilgilerini tarar.
+- **Bayatlık Filtresi:** 500MB üzerindeki büyük dosyalar, eğer son 90 gün içinde dokunulmamışsa "atık" olarak işaretlenir.
+- **Sistem Koruması:** `pagefile.sys` gibi kritik Windows sistem dosyalarını otomatik olarak hariç tutar.
 
+### 🛡️ Kurumsal Kurulum ve Güvenlik
+- **UAC Yetki Yükseltme:** Installer, `C:\Program Files` dizinine yazabilmek için otomatik olarak Yönetici İzni ister.
+- **Güvenli Kurulum:** Güncelleme veya kaldırma sırasında çalışan WasteWise süreçlerini otomatik tespit eder ve sonlandırır.
+- **İzole Loglama:** Yetki hatalarını önlemek için loglar `%TEMP%\WasteWise` dizininde tutulur.
+
+---
+
+## 💻 Kurulum
+
+### 1. Hazır Yükleyici (Önerilen)
+En güncel sürümdeki `WasteWise_Installer.exe` dosyasını indirin ve çalıştırın.
+
+### 2. Manuel Kurulum
 ```bash
+git clone https://github.com/Caliquende/WasteWise.git
 cd WasteWise
 pip install -r requirements.txt
-```
-
-### Geliştirme ve UI Testleri
-```bash
-pip install -r requirements-dev.txt
-python -m playwright install chromium
-```
-
-### Desktop / Build Araçları
-```bash
 pip install -r requirements-build.txt
 ```
 
-## 💻 Kullanım
+---
 
-### CLI ile Tarama
+## 🛠️ Kullanım
+
+### Masaüstü Uygulaması
+Masaüstü kısayolundan veya şu komutla başlatın:
 ```bash
-cd src
-python main.py scan C:\Users\Can\work
+python src/main.py app
 ```
 
-### Web Dashboard
+### CLI Modu (İleri Seviye)
 ```bash
-cd src
-python api.py
-# Tarayıcıda http://localhost:8000 adresini aç
+python src/main.py scan C:\HedefDizin
 ```
 
-### Varsayılan Başlatma
+### Arka Plan Takip (Daemon)
+Bir dizini arka planda sessizce izlemek için:
 ```bash
-python src/main.py
+python src/main.py daemon C:\Downloads
 ```
 
-Not:
-- `pywebview` yüklüyse desktop app açılır.
-- Değilse güvenli varsayılan olarak yerel web sunucusu (`serve`) başlar.
+---
 
-## 🧪 Testler
-```bash
-cd WasteWise
-python -m pytest tests -v
-```
+## 📁 Proje Mimarisi
 
-## 📁 Proje Yapısı
 ```
 WasteWise/
 ├── src/
-│   ├── scanner.py      # Dosya sistemi tarama motoru
-│   ├── classifier.py   # Atık sınıflandırma mantığı
-│   ├── actions.py      # Güvenli silme/arşivleme
-│   ├── api.py          # FastAPI backend
-│   └── main.py         # CLI arayüzü
-├── frontend/
-│   ├── index.html      # Dashboard HTML
-│   ├── style.css       # Premium dark theme
-│   └── app.js          # Frontend controller
-├── tests/
-│   ├── test_scanner.py
-│   └── test_classifier.py
-├── docs/
-│   ├── spec.md         # Ürün spesifikasyonu
-│   └── architecture.md # Teknik mimari
-├── requirements.txt
-└── README.md
+│   ├── scanner.py      # Yüksek hızlı dizin tarayıcı
+│   ├── classifier.py   # Atık kategorizasyon mantığı
+│   ├── actions.py      # Güvenli silme ve ZIP arşivleme
+│   ├── api.py          # FastAPI backend sunucusu
+│   └── main.py         # Uygulama giriş noktası ve CLI
+├── frontend/           # Modern Dark-mode UI (HTML/CSS/JS)
+├── installer.py        # Windows Kurulum Sihirbazı (Tkinter)
+├── build.py            # Otomatik derleme ve paketleme scripti
+└── tests/              # Kapsamlı test paketi
 ```
+
+---
+
+*Vatana, millete hayırlı olsun.*
