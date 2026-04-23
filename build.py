@@ -3,15 +3,15 @@ import os
 import subprocess
 import shutil
 
-print("[*] Building WasteWise standalone executable...")
+print("[*] Building WasteWisely standalone executable...")
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 BUILD_DIR = os.path.join(ROOT, "build")
 DIST_DIR = os.path.join(ROOT, "dist")
-APP_BUILD_DIR = os.path.join(BUILD_DIR, "WasteWise")
-INSTALLER_BUILD_DIR = os.path.join(BUILD_DIR, "WasteWise_Installer")
-APP_EXE = os.path.join(DIST_DIR, "WasteWise.exe")
-INSTALLER_EXE = os.path.join(DIST_DIR, "WasteWise_Installer.exe")
+APP_BUILD_DIR = os.path.join(BUILD_DIR, "WasteWisely")
+INSTALLER_BUILD_DIR = os.path.join(BUILD_DIR, "WasteWisely_Installer")
+APP_EXE = os.path.join(DIST_DIR, "WasteWisely.exe")
+INSTALLER_EXE = os.path.join(DIST_DIR, "WasteWisely_Installer.exe")
 
 
 def stop_running_binary(binary_path):
@@ -77,7 +77,7 @@ if missing:
 pyinstaller_cmd = [
     sys.executable, "-m", "PyInstaller",
     "--clean",
-    "--name=WasteWise",
+    "--name=WasteWisely",
     "--onefile",
     "--windowed", # Don't open console when double clicked (UI runs in pywebview)
     "--specpath", ROOT,
@@ -111,17 +111,17 @@ os.makedirs(INSTALLER_BUILD_DIR, exist_ok=True)
 installer_cmd = [
     sys.executable, "-m", "PyInstaller",
     "--clean",
-    "--name=WasteWise_Installer",
+    "--name=WasteWisely_Installer",
     "--onefile",
     "--windowed",
     "--uac-admin",
     "--specpath", ROOT,
     "--workpath", BUILD_DIR,
     "--distpath", DIST_DIR,
-    "--add-data=dist/WasteWise.exe;.",
+    "--add-data=dist/WasteWisely.exe;.",
     "installer.py"
 ]
 
 subprocess.run(installer_cmd, check=True)
 
-print("\n[*] Build complete! Check the 'dist' directory for WasteWise.exe and WasteWise_Installer.exe")
+print("\n[*] Build complete! Check the 'dist' directory for WasteWisely.exe and WasteWisely_Installer.exe")

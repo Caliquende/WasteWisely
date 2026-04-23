@@ -1,5 +1,5 @@
 """
-WasteWise Test Suite - Scanner Tests
+WasteWisely Test Suite - Scanner Tests
 """
 import os
 import sys

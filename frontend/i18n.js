@@ -1,11 +1,11 @@
 const translations = {
     "tr": {
-        "app_title": "WasteWise",
+        "app_title": "WasteWisely",
         "nav_dashboard": "📊 Dashboard",
         "nav_scan": "🔍 Tarama",
         "nav_results": "📋 Sonuçlar",
         "nav_history": "🕐 Geçmiş",
-        "welcome_title": "WasteWise'a Hoş Geldin",
+        "welcome_title": "WasteWisely'a Hoş Geldin",
         "welcome_desc": "Dijital atıklarını tespit etmek için bir tarama başlat.",
         "start_scan": "İlk Taramayı Başlat",
         "stat_scanned": "Taranan Öğe",
@@ -46,12 +46,12 @@ const translations = {
         "toast_error": "Hata Oluştu"
     },
     "en": {
-        "app_title": "WasteWise",
+        "app_title": "WasteWisely",
         "nav_dashboard": "📊 Dashboard",
         "nav_scan": "🔍 Scan",
         "nav_results": "📋 Results",
         "nav_history": "🕐 History",
-        "welcome_title": "Welcome to WasteWise",
+        "welcome_title": "Welcome to WasteWisely",
         "welcome_desc": "Start a scan to detect your digital waste.",
         "start_scan": "Start First Scan",
         "stat_scanned": "Scanned Items",
@@ -92,12 +92,12 @@ const translations = {
         "toast_error": "Error"
     },
     "de": {
-        "app_title": "WasteWise",
+        "app_title": "WasteWisely",
         "nav_dashboard": "📊 Dashboard",
         "nav_scan": "🔍 Scannen",
         "nav_results": "📋 Ergebnisse",
         "nav_history": "🕐 Verlauf",
-        "welcome_title": "Willkommen bei WasteWise",
+        "welcome_title": "Willkommen bei WasteWisely",
         "welcome_desc": "Starten Sie einen Scan, um Ihren digitalen Müll zu erkennen.",
         "start_scan": "Ersten Scan starten",
         "stat_scanned": "Gescannte Elemente",
@@ -138,12 +138,12 @@ const translations = {
         "toast_error": "Fehler"
     },
     "es": {
-        "app_title": "WasteWise",
+        "app_title": "WasteWisely",
         "nav_dashboard": "📊 Panel",
         "nav_scan": "🔍 Escanear",
         "nav_results": "📋 Resultados",
         "nav_history": "🕐 Historial",
-        "welcome_title": "Bienvenido a WasteWise",
+        "welcome_title": "Bienvenido a WasteWisely",
         "welcome_desc": "Inicie un escaneo para detectar su basura digital.",
         "start_scan": "Iniciar primer escaneo",
         "stat_scanned": "Elementos escaneados",
@@ -184,12 +184,12 @@ const translations = {
         "toast_error": "Error"
     },
     "fr": {
-        "app_title": "WasteWise",
+        "app_title": "WasteWisely",
         "nav_dashboard": "📊 Tableau de Bord",
         "nav_scan": "🔍 Analyser",
         "nav_results": "📋 Résultats",
         "nav_history": "🕐 Historique",
-        "welcome_title": "Bienvenue sur WasteWise",
+        "welcome_title": "Bienvenue sur WasteWisely",
         "welcome_desc": "Lancez une analyse pour détecter vos déchets numériques.",
         "start_scan": "Lancer la première analyse",
         "stat_scanned": "Éléments analysés",
@@ -230,12 +230,12 @@ const translations = {
         "toast_error": "Erreur"
     },
     "it": {
-        "app_title": "WasteWise",
+        "app_title": "WasteWisely",
         "nav_dashboard": "📊 Cruscotto",
         "nav_scan": "🔍 Scansione",
         "nav_results": "📋 Risultati",
         "nav_history": "🕐 Cronologia",
-        "welcome_title": "Benvenuto in WasteWise",
+        "welcome_title": "Benvenuto in WasteWisely",
         "welcome_desc": "Avvia una scansione per rilevare i tuoi rifiuti digitali.",
         "start_scan": "Avvia la prima scansione",
         "stat_scanned": "Elementi scansionati",
@@ -276,12 +276,12 @@ const translations = {
         "toast_error": "Errore"
     },
     "ru": {
-        "app_title": "WasteWise",
+        "app_title": "WasteWisely",
         "nav_dashboard": "📊 Панель",
         "nav_scan": "🔍 Сканировать",
         "nav_results": "📋 Результаты",
         "nav_history": "🕐 История",
-        "welcome_title": "Добро пожаловать в WasteWise",
+        "welcome_title": "Добро пожаловать в WasteWisely",
         "welcome_desc": "Начните сканирование, чтобы обнаружить цифровой мусор.",
         "start_scan": "Начать первое сканирование",
         "stat_scanned": "Отсканированные элементы",
@@ -322,12 +322,12 @@ const translations = {
         "toast_error": "Ошибка"
     },
     "zh": {
-        "app_title": "WasteWise",
+        "app_title": "WasteWisely",
         "nav_dashboard": "📊 仪表板",
         "nav_scan": "🔍 扫描",
         "nav_results": "📋 结果",
         "nav_history": "🕐 历史记录",
-        "welcome_title": "欢迎来到 WasteWise",
+        "welcome_title": "欢迎来到 WasteWisely",
         "welcome_desc": "开始扫描以检测您的数字垃圾。",
         "start_scan": "开始首次扫描",
         "stat_scanned": "已扫描项目",
@@ -368,12 +368,12 @@ const translations = {
         "toast_error": "错误"
     },
     "ja": {
-        "app_title": "WasteWise",
+        "app_title": "WasteWisely",
         "nav_dashboard": "📊 ダッシュボード",
         "nav_scan": "🔍 スキャン",
         "nav_results": "📋 結果",
         "nav_history": "🕐 履歴",
-        "welcome_title": "WasteWiseへようこそ",
+        "welcome_title": "WasteWiselyへようこそ",
         "welcome_desc": "スキャンを開始してデジタルゴミを検出します。",
         "start_scan": "最初のスキャンを開始",
         "stat_scanned": "スキャンされたアイテム",
@@ -414,12 +414,12 @@ const translations = {
         "toast_error": "エラー"
     },
     "ar": {
-        "app_title": "WasteWise",
+        "app_title": "WasteWisely",
         "nav_dashboard": "📊 لوحة القيادة",
         "nav_scan": "🔍 مسح",
         "nav_results": "📋 النتائج",
         "nav_history": "🕐 السجل",
-        "welcome_title": "مرحبًا بك في WasteWise",
+        "welcome_title": "مرحبًا بك في WasteWisely",
         "welcome_desc": "ابدأ مسحًا لاكتشاف النفايات الرقمية الخاصة بك.",
         "start_scan": "ابدأ المسح الأول",
         "stat_scanned": "العناصر الممسوحة",

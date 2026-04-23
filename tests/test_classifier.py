@@ -1,5 +1,5 @@
 """
-WasteWise Test Suite - Classifier Tests
+WasteWisely Test Suite - Classifier Tests
 """
 import sys
 import tempfile

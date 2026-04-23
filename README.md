@@ -1,6 +1,6 @@
-# 🗑️ WasteWise — Professional Digital Waste Auditor
+# 🗑️ WasteWisely — Professional Digital Waste Auditor
 
-WasteWise is a high-performance Windows desktop application designed to identify and clean "digital waste." It goes beyond simple temp file cleaning by intelligently classifying development bloat, sensitive data leaks, and stale project files.
+WasteWisely is a high-performance Windows desktop application designed to identify and clean "digital waste." It goes beyond simple temp file cleaning by intelligently classifying development bloat, sensitive data leaks, and stale project files.
 
 [🇹🇷 Türkçe dökümantasyon için tıklayın (README_TR.md)](README_TR.md)
 
@@ -22,20 +22,20 @@ WasteWise is a high-performance Windows desktop application designed to identify
 
 ### 🛡️ Professional Deployment
 - **UAC Elevation:** The installer requests administrative privileges to manage `C:\Program Files`.
-- **Safe Installation:** Automatically detects and stops running instances of WasteWise before updates or uninstallation to prevent file locking errors.
-- **Isolated Logging:** Logs are stored in `%TEMP%\WasteWise` to avoid permission issues.
+- **Safe Installation:** Automatically detects and stops running instances of WasteWisely before updates or uninstallation to prevent file locking errors.
+- **Isolated Logging:** Logs are stored in `%TEMP%\WasteWisely` to avoid permission issues.
 
 ---
 
 ## 💻 Installation
 
 ### 1. Pre-built Installer (Recommended)
-Download and run the `WasteWise_Installer.exe` from the latest release.
+Download and run the `WasteWisely_Installer.exe` from the latest release.
 
 ### 2. Manual Setup
 ```bash
-git clone https://github.com/Caliquende/WasteWise.git
-cd WasteWise
+git clone https://github.com/Caliquende/WasteWisely.git
+cd WasteWisely
 pip install -r requirements.txt
 pip install -r requirements-build.txt
 ```
@@ -66,7 +66,7 @@ python src/main.py daemon C:\Downloads
 ## 📁 Project Architecture
 
 ```
-WasteWise/
+WasteWisely/
 ├── src/
 │   ├── scanner.py      # High-speed directory walker
 │   ├── classifier.py   # Business logic for waste categories

@@ -1,5 +1,5 @@
 """
-WasteWise Actions Module
+WasteWisely Actions Module
 Guvenli silme ve arsivleme islemlerini yoneten modul.
 """
 import os

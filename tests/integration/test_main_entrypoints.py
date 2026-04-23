@@ -15,7 +15,7 @@ def test_resolve_log_path_prefers_localappdata(monkeypatch, tmp_path):
     monkeypatch.delenv("TEMP", raising=False)
 
     assert cli_main.resolve_log_path("wastewise_debug.log") == (
-        local_app_data / "WasteWise" / "logs" / "wastewise_debug.log"
+        local_app_data / "WasteWisely" / "logs" / "wastewise_debug.log"
     )
 
 
@@ -23,7 +23,7 @@ def test_configure_logging_falls_back_to_stderr_when_file_handler_fails(monkeypa
     config_calls = {}
     stream_marker = object()
 
-    monkeypatch.setattr(cli_main, "resolve_log_path", lambda name: Path(r"C:\Program Files\WasteWise") / name)
+    monkeypatch.setattr(cli_main, "resolve_log_path", lambda name: Path(r"C:\Program Files\WasteWisely") / name)
     monkeypatch.setattr(
         cli_main.logging,
         "FileHandler",
@@ -229,7 +229,7 @@ def test_run_app_starts_server_thread_and_opens_desktop_window(monkeypatch):
     assert FakeThread.instance.daemon is True
     assert FakeThread.instance.started is True
     assert calls["sleep"] == [1.5]
-    assert calls["window_args"] == ("WasteWise Desktop", "http://127.0.0.1:8000")
+    assert calls["window_args"] == ("WasteWisely Desktop", "http://127.0.0.1:8000")
     assert calls["window_kwargs"] == {"width": 1200, "height": 800}
     assert calls["webview_started"] is True
 
@@ -260,7 +260,7 @@ def test_run_app_uses_environment_port_in_desktop_window(monkeypatch):
 
     cli_main.run_app()
 
-    assert calls["window_args"] == ("WasteWise Desktop", "http://127.0.0.1:9456")
+    assert calls["window_args"] == ("WasteWisely Desktop", "http://127.0.0.1:9456")
 
 
 def test_run_daemon_warns_without_toast_dependency_and_exits_on_keyboard_interrupt(
@@ -372,7 +372,7 @@ def test_run_daemon_emits_desktop_notification_for_large_waste(monkeypatch, tmp_
     captured = capsys.readouterr()
     assert exc_info.value.code == 0
     assert toast_calls == {
-        "title": "WasteWise Atik Alarmi!",
+        "title": "WasteWisely Atik Alarmi!",
         "msg": "Sisteminizde 3 adet, 60 MB boyutunda atik bulundu.",
         "duration": 5,
         "threaded": True,

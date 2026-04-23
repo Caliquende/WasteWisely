@@ -1,6 +1,6 @@
-# 🗑️ WasteWise — Profesyonel Dijital Atık Denetçisi
+# 🗑️ WasteWisely — Profesyonel Dijital Atık Denetçisi
 
-WasteWise, "dijital atıkları" tespit etmek ve temizlemek için tasarlanmış yüksek performanslı bir Windows masaüstü uygulamasıdır. Sadece geçici dosyaları silmekle kalmaz; yazılım geliştirme kalıntılarını, hassas veri sızıntılarını ve bayatlamış büyük dosyaları akıllıca sınıflandırır.
+WasteWisely, "dijital atıkları" tespit etmek ve temizlemek için tasarlanmış yüksek performanslı bir Windows masaüstü uygulamasıdır. Sadece geçici dosyaları silmekle kalmaz; yazılım geliştirme kalıntılarını, hassas veri sızıntılarını ve bayatlamış büyük dosyaları akıllıca sınıflandırır.
 
 [🇺🇸 Click for English documentation (README.md)](README.md)
 
@@ -22,20 +22,20 @@ WasteWise, "dijital atıkları" tespit etmek ve temizlemek için tasarlanmış y
 
 ### 🛡️ Kurumsal Kurulum ve Güvenlik
 - **UAC Yetki Yükseltme:** Installer, `C:\Program Files` dizinine yazabilmek için otomatik olarak Yönetici İzni ister.
-- **Güvenli Kurulum:** Güncelleme veya kaldırma sırasında çalışan WasteWise süreçlerini otomatik tespit eder ve sonlandırır.
-- **İzole Loglama:** Yetki hatalarını önlemek için loglar `%TEMP%\WasteWise` dizininde tutulur.
+- **Güvenli Kurulum:** Güncelleme veya kaldırma sırasında çalışan WasteWisely süreçlerini otomatik tespit eder ve sonlandırır.
+- **İzole Loglama:** Yetki hatalarını önlemek için loglar `%TEMP%\WasteWisely` dizininde tutulur.
 
 ---
 
 ## 💻 Kurulum
 
 ### 1. Hazır Yükleyici (Önerilen)
-En güncel sürümdeki `WasteWise_Installer.exe` dosyasını indirin ve çalıştırın.
+En güncel sürümdeki `WasteWisely_Installer.exe` dosyasını indirin ve çalıştırın.
 
 ### 2. Manuel Kurulum
 ```bash
-git clone https://github.com/Caliquende/WasteWise.git
-cd WasteWise
+git clone https://github.com/Caliquende/WasteWisely.git
+cd WasteWisely
 pip install -r requirements.txt
 pip install -r requirements-build.txt
 ```
@@ -66,7 +66,7 @@ python src/main.py daemon C:\Downloads
 ## 📁 Proje Mimarisi
 
 ```
-WasteWise/
+WasteWisely/
 ├── src/
 │   ├── scanner.py      # Yüksek hızlı dizin tarayıcı
 │   ├── classifier.py   # Atık kategorizasyon mantığı

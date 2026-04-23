@@ -1,7 +1,7 @@
 [project]
 name = "wastewise"
 version = "2.0.0"
-description = "WasteWise - Dijital Atık Denetçisi"
+description = "WasteWisely - Dijital Atık Denetçisi"
 authors = [
     {name = "Selin / Agent Company", email = "selin@agentcompany.local"}
 ]

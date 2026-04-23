@@ -78,8 +78,8 @@ def test_build_script_cleans_output_dirs_and_runs_both_pyinstaller_commands(monk
     project_root = str(BUILD_SCRIPT.parent)
     build_dir = str(BUILD_SCRIPT.parent / "build")
     dist_dir = str(BUILD_SCRIPT.parent / "dist")
-    app_build_dir = str(BUILD_SCRIPT.parent / "build" / "WasteWise")
-    installer_build_dir = str(BUILD_SCRIPT.parent / "build" / "WasteWise_Installer")
+    app_build_dir = str(BUILD_SCRIPT.parent / "build" / "WasteWisely")
+    installer_build_dir = str(BUILD_SCRIPT.parent / "build" / "WasteWisely_Installer")
     removed_paths = set()
     original_exists = os.path.exists
 
@@ -122,7 +122,7 @@ def test_build_script_cleans_output_dirs_and_runs_both_pyinstaller_commands(monk
     cleanup_command, cleanup_check, cleanup_kwargs = commands[0]
     assert cleanup_check is True
     assert cleanup_command[:3] == ["powershell", "-NoProfile", "-Command"]
-    assert "WasteWise.exe" in cleanup_command[-1]
+    assert "WasteWisely.exe" in cleanup_command[-1]
     assert cleanup_kwargs["stdout"] == subprocess.DEVNULL
     assert cleanup_kwargs["stderr"] == subprocess.DEVNULL
 
@@ -131,7 +131,7 @@ def test_build_script_cleans_output_dirs_and_runs_both_pyinstaller_commands(monk
     first_command, first_check = pyinstaller_commands[0]
     assert first_check is True
     assert first_command[:3] == [sys.executable, "-m", "PyInstaller"]
-    assert "--name=WasteWise" in first_command
+    assert "--name=WasteWisely" in first_command
     assert "--onefile" in first_command
     assert "--windowed" in first_command
     assert _arg_value(first_command, "--specpath") == project_root
@@ -152,12 +152,12 @@ def test_build_script_cleans_output_dirs_and_runs_both_pyinstaller_commands(monk
     second_command, second_check = pyinstaller_commands[1]
     assert second_check is True
     assert second_command[:3] == [sys.executable, "-m", "PyInstaller"]
-    assert "--name=WasteWise_Installer" in second_command
+    assert "--name=WasteWisely_Installer" in second_command
     assert "--onefile" in second_command
     assert "--windowed" in second_command
     assert "--uac-admin" not in second_command
     assert _arg_value(second_command, "--specpath") == project_root
     assert _arg_value(second_command, "--workpath") == build_dir
     assert _arg_value(second_command, "--distpath") == dist_dir
-    assert "--add-data=dist/WasteWise.exe;." in second_command
+    assert "--add-data=dist/WasteWisely.exe;." in second_command
     assert second_command[-1] == "installer.py"

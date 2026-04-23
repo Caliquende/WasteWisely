@@ -1,11 +1,11 @@
-# WasteWise - Teknik Mimari Tasarımı
+# WasteWisely - Teknik Mimari Tasarımı
 
 **Sürüm:** 1.0.0  
 **Durum:** Onaylandı  
 **Sorumlu:** solution-architect
 
 ## 1. Bağlam ve Kapsam
-WasteWise, yerel dosya sistemini analiz ederek atık tespiti yapacak bir araçtır. İlk aşamada güçlü bir CLI engine (çekirdek) üzerine inşa edilecek, ardından basit bir yerel web arayüzü ile desteklenecektir.
+WasteWisely, yerel dosya sistemini analiz ederek atık tespiti yapacak bir araçtır. İlk aşamada güçlü bir CLI engine (çekirdek) üzerine inşa edilecek, ardından basit bir yerel web arayüzü ile desteklenecektir.
 
 ## 2. Önerilen Teknoloji Yığını
 - **Dil:** Python 3.10+ (Zengin kütüphane desteği ve hızlı prototipleme için).

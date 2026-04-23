@@ -1,5 +1,5 @@
 """
-WasteWise Scanner Module
+WasteWisely Scanner Module
 Dosya sistemini tarayan ve metadata toplayan motor.
 """
 import os

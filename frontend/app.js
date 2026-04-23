@@ -1,5 +1,5 @@
 /**
- * WasteWise Dashboard Application
+ * WasteWisely Dashboard Application
  * Frontend controller for scan, display, and action operations.
  */
 

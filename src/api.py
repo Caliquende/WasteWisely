@@ -1,5 +1,5 @@
 """
-WasteWise API Server
+WasteWisely API Server
 FastAPI tabanlı backend - tarama, sınıflandırma ve aksiyon API'leri.
 """
 import sys
@@ -23,7 +23,7 @@ from classifier import Classifier
 from actions import Actions
 
 app = FastAPI(
-    title="WasteWise API",
+    title="WasteWisely API",
     description="Dijital Atık Denetçisi - Dosya sistemi analiz ve temizlik aracı",
     version="1.0.0",
 )
@@ -70,7 +70,7 @@ class ActionRequest(BaseModel):
 # --- API Routes ---
 @app.get("/api/health")
 def health():
-    return {"status": "ok", "service": "WasteWise"}
+    return {"status": "ok", "service": "WasteWisely"}
 
 
 @app.get("/api/select-directory")
@@ -160,6 +160,6 @@ if frontend_dir is not None:
 
 if __name__ == "__main__":
     import uvicorn
-    print("[*] WasteWise API baslatiliyor: http://localhost:8000")
+    print("[*] WasteWisely API baslatiliyor: http://localhost:8000")
     print("[>] Dashboard: http://localhost:8000")
     uvicorn.run(app, host="0.0.0.0", port=8000)

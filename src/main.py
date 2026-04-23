@@ -1,5 +1,5 @@
 """
-WasteWise CLI - Komut satiri arayuzu.
+WasteWisely CLI - Komut satiri arayuzu.
 Hem bagimsiz tarama hem de API sunucusu baslatma destegi.
 """
 import sys
@@ -14,12 +14,12 @@ from pathlib import Path
 
 LOG_FILENAME = "wastewise_debug.log"
 LOG_FORMAT = "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
-EVENT_SOURCE = "WasteWiseApp"
+EVENT_SOURCE = "WasteWiselyApp"
 
 
 def resolve_log_path(log_name: str) -> Path:
     base_dir = os.environ.get("LOCALAPPDATA") or os.environ.get("TEMP") or tempfile.gettempdir()
-    return Path(base_dir) / "WasteWise" / "logs" / log_name
+    return Path(base_dir) / "WasteWisely" / "logs" / log_name
 
 
 def configure_logging() -> None:
@@ -107,7 +107,7 @@ def run_scan(target_path: str):
         return
 
     console = Console()
-    console.print(Panel(f"WasteWise Tarama: [bold cyan]{target}[/]", expand=False))
+    console.print(Panel(f"WasteWisely Tarama: [bold cyan]{target}[/]", expand=False))
 
     scanner = Scanner(str(target))
     
@@ -149,7 +149,7 @@ def run_server(port=None):
         port = resolve_runtime_port()
     try:
         import uvicorn
-        print(f"[*] WasteWise API & Dashboard baslatiliyor: http://127.0.0.1:{port}")
+        print(f"[*] WasteWisely API & Dashboard baslatiliyor: http://127.0.0.1:{port}")
         uvicorn.run("api:app", host="127.0.0.1", port=port, reload=False, app_dir=str(_src_dir))
     except ImportError:
         print("[x] uvicorn yuklu degil. 'pip install uvicorn[standard]' calistirin.")
@@ -184,12 +184,12 @@ def run_app():
     
     time.sleep(1.5)  # Sunucunun kalkmasi icin kisa bekleme
     js_api = JSApi()
-    webview.create_window('WasteWise Desktop', f'http://127.0.0.1:{port}', js_api=js_api, width=1200, height=800)
+    webview.create_window('WasteWisely Desktop', f'http://127.0.0.1:{port}', js_api=js_api, width=1200, height=800)
     webview.start()
 
 def run_daemon(target_path: str):
     """Arka planda klasoru izleyen ve belli araliklarla tarama yapan akilli daemon modu."""
-    print(f"[*] WasteWise Daemon modunda calisiyor. Izlenen dizin: {target_path}")
+    print(f"[*] WasteWisely Daemon modunda calisiyor. Izlenen dizin: {target_path}")
     print("[*] Arka planda atik birikimi takip edilecek...")
     
     try:
@@ -226,7 +226,7 @@ def run_daemon(target_path: str):
                     print(f"[DAEMON-ALERT] {msg}")
                     if toaster:
                         # threaded=True gives background notification without blocking
-                        toaster.show_toast("WasteWise Atik Alarmi!", msg, duration=5, threaded=True)
+                        toaster.show_toast("WasteWisely Atik Alarmi!", msg, duration=5, threaded=True)
                 else:
                     print("[DAEMON] Sistem temiz. Birikim yok.")
             except Exception as e:
@@ -246,7 +246,7 @@ def main():
     # BUG-5 FIX: argparse description uses only ASCII
     parser = argparse.ArgumentParser(
         prog="wastewise",
-        description="WasteWise - Dijital Atik Denetcisi",
+        description="WasteWisely - Dijital Atik Denetcisi",
     )
     subparsers = parser.add_subparsers(dest="command")
 

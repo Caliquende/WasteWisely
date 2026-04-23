@@ -7,12 +7,12 @@ langs = {
 }
 
 keys = {
-    "app_title": ["WasteWise", "WasteWise", "WasteWise", "WasteWise", "WasteWise", "WasteWise", "WasteWise", "WasteWise", "WasteWise", "WasteWise"],
+    "app_title": ["WasteWisely", "WasteWisely", "WasteWisely", "WasteWisely", "WasteWisely", "WasteWisely", "WasteWisely", "WasteWisely", "WasteWisely", "WasteWisely"],
     "nav_dashboard": ["📊 Dashboard", "📊 Dashboard", "📊 Dashboard", "📊 Panel", "📊 Tableau de Bord", "📊 Cruscotto", "📊 Панель", "📊 仪表板", "📊 ダッシュボード", "📊 لوحة القيادة"],
     "nav_scan": ["🔍 Tarama", "🔍 Scan", "🔍 Scannen", "🔍 Escanear", "🔍 Analyser", "🔍 Scansione", "🔍 Сканировать", "🔍 扫描", "🔍 スキャン", "🔍 مسح"],
     "nav_results": ["📋 Sonuçlar", "📋 Results", "📋 Ergebnisse", "📋 Resultados", "📋 Résultats", "📋 Risultati", "📋 Результаты", "📋 结果", "📋 結果", "📋 النتائج"],
     "nav_history": ["🕐 Geçmiş", "🕐 History", "🕐 Verlauf", "🕐 Historial", "🕐 Historique", "🕐 Cronologia", "🕐 История", "🕐 历史记录", "🕐 履歴", "🕐 السجل"],
-    "welcome_title": ["WasteWise'a Hoş Geldin", "Welcome to WasteWise", "Willkommen bei WasteWise", "Bienvenido a WasteWise", "Bienvenue sur WasteWise", "Benvenuto in WasteWise", "Добро пожаловать в WasteWise", "欢迎来到 WasteWise", "WasteWiseへようこそ", "مرحبًا بك في WasteWise"],
+    "welcome_title": ["WasteWisely'a Hoş Geldin", "Welcome to WasteWisely", "Willkommen bei WasteWisely", "Bienvenido a WasteWisely", "Bienvenue sur WasteWisely", "Benvenuto in WasteWisely", "Добро пожаловать в WasteWisely", "欢迎来到 WasteWisely", "WasteWiselyへようこそ", "مرحبًا بك في WasteWisely"],
     "welcome_desc": ["Dijital atıklarını tespit etmek için bir tarama başlat.", "Start a scan to detect your digital waste.", "Starten Sie einen Scan, um Ihren digitalen Müll zu erkennen.", "Inicie un escaneo para detectar su basura digital.", "Lancez une analyse pour détecter vos déchets numériques.", "Avvia una scansione per rilevare i tuoi rifiuti digitali.", "Начните сканирование, чтобы обнаружить цифровой мусор.", "开始扫描以检测您的数字垃圾。", "スキャンを開始してデジタルゴミを検出します。", "ابدأ مسحًا لاكتشاف النفايات الرقمية الخاصة بك."],
     "start_scan": ["İlk Taramayı Başlat", "Start First Scan", "Ersten Scan starten", "Iniciar primer escaneo", "Lancer la première analyse", "Avvia la prima scansione", "Начать первое сканирование", "开始首次扫描", "最初のスキャンを開始", "ابدأ المسح الأول"],
     "stat_scanned": ["Taranan Öğe", "Scanned Items", "Gescannte Elemente", "Elementos escaneados", "Éléments analysés", "Elementi scansionati", "Отсканированные элементы", "已扫描项目", "スキャンされたアイテム", "العناصر الممسوحة"],

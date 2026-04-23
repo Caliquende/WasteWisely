@@ -4,7 +4,7 @@
 
 - Root cause confirmed:
   - PyInstaller analysis could not resolve local top-level modules from `src/`.
-  - `build/WasteWise/warn-WasteWise.txt` previously contained:
+  - `build/WasteWisely/warn-WasteWisely.txt` previously contained:
     - `missing module named classifier - imported by ... src\main.py`
     - `missing module named scanner - imported by ... src\main.py`
   - Dynamic `uvicorn.run("api:app", ...)` path also lacked explicit packaging coverage.
@@ -12,13 +12,13 @@
 - Fix applied:
   - `build.py` now adds `--paths=src`
   - `build.py` now adds hidden imports: `api`, `actions`, `scanner`, `classifier`
-  - `WasteWise.spec` aligned with the same local-module packaging contract
+  - `WasteWisely.spec` aligned with the same local-module packaging contract
   - `installer.py` gained `--silent` mode for smoke automation
   - `src/main.py` gained `WASTEWISE_PORT` runtime override for isolated binary smoke
 
 - Evidence:
-  - `python build.py` -> success, produced `dist/WasteWise.exe` and `dist/WasteWise_Installer.exe`
-  - `Select-String build\WasteWise\warn-WasteWise.txt -Pattern "missing module named api|missing module named actions|missing module named scanner|missing module named classifier"` -> no matches
+  - `python build.py` -> success, produced `dist/WasteWisely.exe` and `dist/WasteWisely_Installer.exe`
+  - `Select-String build\WasteWisely\warn-WasteWisely.txt -Pattern "missing module named api|missing module named actions|missing module named scanner|missing module named classifier"` -> no matches
   - `$env:WW_RUN_WINDOWS_SMOKE='1'; python -m pytest tests\e2e\test_windows_smoke.py -q -rA`
     - `PASSED test_windows_build_produces_expected_binaries`
     - `PASSED test_windows_desktop_binary_serves_health_endpoint`
@@ -37,7 +37,7 @@
     - it assumed only two `subprocess.run(...)` calls
     - it used a too-narrow `subprocess.run` test double that broke once stdout/stderr kwargs were passed
   - Packaged frontend resolution was incomplete:
-    - health endpoint from `WasteWise.exe serve` came up
+    - health endpoint from `WasteWisely.exe serve` came up
     - Playwright could not find `#btn-start-scan`
     - cause: `src/api.py` only looked for `frontend/` in source layout and ignored PyInstaller `_MEIPASS`
 
@@ -48,7 +48,7 @@
     - validates `--specpath/--workpath/--distpath`
     - mocks cleanup/recreation behavior explicitly
   - `build.py`
-    - now stops the exact packaged `dist/WasteWise.exe` before rebuild
+    - now stops the exact packaged `dist/WasteWisely.exe` before rebuild
     - verifies cleanup happened instead of silently ignoring stale directories
     - pre-creates target work directories
   - `src/api.py`

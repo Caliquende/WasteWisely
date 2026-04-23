@@ -11,12 +11,12 @@ from dataclasses import dataclass
 from pathlib import Path
 from tkinter import filedialog, messagebox
 
-LOG_FILENAME = "wastewise_installer_debug.log"
+LOG_FILENAME = "wastewisely_installer_debug.log"
 LOG_FORMAT = "%(asctime)s - %(levelname)s - %(message)s"
-EVENT_SOURCE = "WasteWiseInstaller"
-APP_NAME = "WasteWise"
-APP_EXE_NAME = "WasteWise.exe"
-SHORTCUT_NAME = "WasteWise.lnk"
+EVENT_SOURCE = "WasteWiselylyInstaller"
+APP_NAME = "WasteWiselyly"
+APP_EXE_NAME = "WasteWiselyly.exe"
+SHORTCUT_NAME = "WasteWiselyly.lnk"
 import subprocess
 
 
@@ -262,7 +262,7 @@ def install(
 class InstallerWizard:
     def __init__(self):
         self.root = tk.Tk()
-        self.root.title("WasteWise Kurulum Sihirbazı")
+        self.root.title("WasteWisely Kurulum Sihirbazı")
         self.root.geometry("620x360")
         self.root.resizable(False, False)
         self.root.eval("tk::PlaceWindow . center")
@@ -312,13 +312,13 @@ class InstallerWizard:
         frame = tk.Frame(parent)
         tk.Label(
             frame,
-            text="WasteWise Kurulum Sihirbazına Hoş Geldiniz",
+            text="WasteWisely Kurulum Sihirbazına Hoş Geldiniz",
             font=("Segoe UI", 16, "bold"),
         ).pack(anchor="w", pady=(0, 16))
         tk.Label(
             frame,
             text=(
-                "Bu sihirbaz WasteWise uygulamasını kullanıcı hesabınıza kurar.\n"
+                "Bu sihirbaz WasteWisely uygulamasını kullanıcı hesabınıza kurar.\n"
                 "Varsayılan hedef dizin kullanıcı-yazılabilir bir konumdur; isterseniz değiştirebilirsiniz."
             ),
             justify="left",
@@ -427,11 +427,11 @@ class InstallerWizard:
         exists = detect_existing_install(install_dir)
         if exists:
             self.existing_install_var.set(
-                "Bu klasörde mevcut bir WasteWise kurulumu bulundu. İsterseniz yeniden kurmadan önce kaldırabilirsiniz."
+                "Bu klasörde mevcut bir WasteWisely kurulumu bulundu. İsterseniz yeniden kurmadan önce kaldırabilirsiniz."
             )
             self.remove_existing_btn.config(state="normal")
         else:
-            self.existing_install_var.set("Seçilen klasörde mevcut bir WasteWise kurulumu bulunmadı.")
+            self.existing_install_var.set("Seçilen klasörde mevcut bir WasteWisely kurulumu bulunmadı.")
             self.remove_existing_btn.config(state="disabled")
 
     def remove_existing_install_from_ui(self):
@@ -442,7 +442,7 @@ class InstallerWizard:
 
         confirmed = messagebox.askyesno(
             "Kurulumu Kaldır",
-            f"{install_dir} altındaki mevcut WasteWise dosyaları silinsin mi?",
+            f"{install_dir} altındaki mevcut WasteWisely dosyaları silinsin mi?",
         )
         if not confirmed:
             return
@@ -513,7 +513,7 @@ def launch_gui():
 
 
 def main(argv=None):
-    parser = argparse.ArgumentParser(description="WasteWise installer")
+    parser = argparse.ArgumentParser(description="WasteWisely installer")
     parser.add_argument("--silent", action="store_true", help="GUI olmadan kurulumu baslat")
     parser.add_argument("--install-dir", help="Kurulum klasoru")
     parser.add_argument("--desktop-dir", help="Kisayolun olusturulacagi masaustu klasoru")
@@ -525,7 +525,7 @@ def main(argv=None):
     parser.add_argument(
         "--remove-existing",
         action="store_true",
-        help="Kurulumdan once ayni klasordeki mevcut WasteWise dosyalarini sil",
+        help="Kurulumdan once ayni klasordeki mevcut WasteWisely dosyalarini sil",
     )
     args = parser.parse_args(argv)
 

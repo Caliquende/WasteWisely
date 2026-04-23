@@ -9,7 +9,7 @@ import installer
 
 def _install_bundle(tmp_path):
     bundle_dir = tmp_path / "bundle"
-    source_exe = bundle_dir / "WasteWise.exe"
+    source_exe = bundle_dir / "WasteWisely.exe"
     source_exe.parent.mkdir(parents=True)
     source_exe.write_text("binary", encoding="utf-8")
     return bundle_dir
@@ -77,7 +77,7 @@ def test_installer_resolve_log_path_prefers_localappdata(monkeypatch, tmp_path):
     monkeypatch.delenv("TEMP", raising=False)
 
     assert installer.resolve_log_path("wastewise_installer_debug.log") == (
-        local_app_data / "WasteWise" / "logs" / "wastewise_installer_debug.log"
+        local_app_data / "WasteWisely" / "logs" / "wastewise_installer_debug.log"
     )
 
 
@@ -85,7 +85,7 @@ def test_default_install_dir_uses_localappdata_programs(monkeypatch, tmp_path):
     local_app_data = tmp_path / "LocalAppData"
     monkeypatch.setenv("LOCALAPPDATA", str(local_app_data))
 
-    assert installer.default_install_dir() == local_app_data / "Programs" / "WasteWise"
+    assert installer.default_install_dir() == local_app_data / "Programs" / "WasteWisely"
 
 
 def test_install_defaults_to_localappdata_without_requiring_admin(tmp_path, monkeypatch):
@@ -98,15 +98,15 @@ def test_install_defaults_to_localappdata_without_requiring_admin(tmp_path, monk
 
     result = installer.install()
 
-    install_dir = env["local_app_data"] / "Programs" / "WasteWise"
-    dest_exe = install_dir / "WasteWise.exe"
-    shortcut_path = env["desktop"] / "WasteWise.lnk"
+    install_dir = env["local_app_data"] / "Programs" / "WasteWisely"
+    dest_exe = install_dir / "WasteWisely.exe"
+    shortcut_path = env["desktop"] / "WasteWisely.lnk"
 
     assert result.install_dir == install_dir
     assert result.exe_path == dest_exe
     assert result.shortcut_path == shortcut_path
     assert dest_exe.read_text(encoding="utf-8") == "binary"
-    assert not (env["program_files"] / "WasteWise" / "WasteWise.exe").exists()
+    assert not (env["program_files"] / "WasteWisely" / "WasteWisely.exe").exists()
     assert dispatch_calls == ["WScript.Shell"]
     assert shortcut_state == {
         "created_path": str(shortcut_path),
@@ -121,7 +121,7 @@ def test_install_defaults_to_localappdata_without_requiring_admin(tmp_path, monk
 def test_install_uses_explicit_install_dir_and_can_skip_shortcut(tmp_path, monkeypatch):
     bundle_dir = _install_bundle(tmp_path)
     _install_env(tmp_path, monkeypatch)
-    custom_install_dir = tmp_path / "Apps" / "WasteWise Custom"
+    custom_install_dir = tmp_path / "Apps" / "WasteWisely Custom"
 
     monkeypatch.setattr(installer, "is_admin", lambda: False, raising=False)
     monkeypatch.setattr(sys, "_MEIPASS", str(bundle_dir), raising=False)
@@ -131,7 +131,7 @@ def test_install_uses_explicit_install_dir_and_can_skip_shortcut(tmp_path, monke
         create_shortcut=False,
     )
 
-    dest_exe = custom_install_dir / "WasteWise.exe"
+    dest_exe = custom_install_dir / "WasteWisely.exe"
     assert result.install_dir == custom_install_dir.resolve()
     assert result.exe_path == dest_exe.resolve()
     assert result.shortcut_path is None
@@ -140,7 +140,7 @@ def test_install_uses_explicit_install_dir_and_can_skip_shortcut(tmp_path, monke
 
 def test_install_raises_error_when_source_exe_is_missing(tmp_path, monkeypatch):
     _install_env(tmp_path, monkeypatch)
-    missing_source = tmp_path / "missing" / "WasteWise.exe"
+    missing_source = tmp_path / "missing" / "WasteWisely.exe"
 
     monkeypatch.setattr(installer, "is_admin", lambda: False, raising=False)
     monkeypatch.setattr(installer, "resolve_bundled_app", lambda: missing_source)
@@ -154,7 +154,7 @@ def test_install_raises_error_when_source_exe_is_missing(tmp_path, monkeypatch):
 def test_install_requires_admin_only_for_protected_paths(tmp_path, monkeypatch):
     bundle_dir = _install_bundle(tmp_path)
     env = _install_env(tmp_path, monkeypatch)
-    protected_target = env["program_files"] / "WasteWise"
+    protected_target = env["program_files"] / "WasteWisely"
 
     monkeypatch.setattr(installer, "is_admin", lambda: False, raising=False)
     monkeypatch.setattr(sys, "_MEIPASS", str(bundle_dir), raising=False)
@@ -167,11 +167,11 @@ def test_install_requires_admin_only_for_protected_paths(tmp_path, monkeypatch):
 
 def test_remove_existing_install_deletes_installed_exe_shortcut_and_empty_dir(tmp_path, monkeypatch):
     env = _install_env(tmp_path, monkeypatch)
-    install_dir = env["local_app_data"] / "Programs" / "WasteWise"
+    install_dir = env["local_app_data"] / "Programs" / "WasteWisely"
     install_dir.mkdir(parents=True)
-    dest_exe = install_dir / "WasteWise.exe"
+    dest_exe = install_dir / "WasteWisely.exe"
     dest_exe.write_text("binary", encoding="utf-8")
-    shortcut_path = env["desktop"] / "WasteWise.lnk"
+    shortcut_path = env["desktop"] / "WasteWisely.lnk"
     shortcut_path.write_text("shortcut", encoding="utf-8")
 
     removed = installer.remove_existing_install(install_dir)
@@ -192,8 +192,8 @@ def test_main_runs_silent_install_with_explicit_options_without_launching_gui(mo
         "install",
         lambda **kwargs: calls.append(kwargs) or installer.InstallResult(
             install_dir=Path(kwargs["install_dir"]),
-            exe_path=Path(kwargs["install_dir"]) / "WasteWise.exe",
-            shortcut_path=Path(kwargs["desktop_dir"]) / "WasteWise.lnk",
+            exe_path=Path(kwargs["install_dir"]) / "WasteWisely.exe",
+            shortcut_path=Path(kwargs["desktop_dir"]) / "WasteWisely.lnk",
         ),
     )
     monkeypatch.setattr(installer, "launch_gui", lambda: calls.append("gui"))

@@ -1,5 +1,5 @@
 """
-WasteWise Classifier Module
+WasteWisely Classifier Module
 Tarama sonuçlarını atık kategorilerine ayıran sınıflandırıcı.
 """
 from datetime import datetime, timedelta

@@ -14,8 +14,8 @@ from playwright.sync_api import sync_playwright
 
 ROOT = Path(__file__).resolve().parents[2]
 DIST_DIR = ROOT / "dist"
-APP_EXE = DIST_DIR / "WasteWise.exe"
-INSTALLER_EXE = DIST_DIR / "WasteWise_Installer.exe"
+APP_EXE = DIST_DIR / "WasteWisely.exe"
+INSTALLER_EXE = DIST_DIR / "WasteWisely_Installer.exe"
 
 pytestmark = pytest.mark.skipif(
     os.name != "nt" or os.environ.get("WW_RUN_WINDOWS_SMOKE") != "1",
@@ -119,7 +119,7 @@ def test_windows_packaged_server_serves_health_and_frontend(built_binaries):
     finally:
         _stop_process(proc)
 
-    assert payload == {"status": "ok", "service": "WasteWise"}
+    assert payload == {"status": "ok", "service": "WasteWisely"}
 
 
 def test_windows_silent_installer_creates_runnable_install(tmp_path, built_binaries):
@@ -140,10 +140,10 @@ def test_windows_silent_installer_creates_runnable_install(tmp_path, built_binar
         timeout=60,
     )
 
-    installed_exes = list(fake_local_appdata.rglob("WasteWise.exe"))
+    installed_exes = list(fake_local_appdata.rglob("WasteWisely.exe"))
     assert len(installed_exes) == 1, f"Beklenen tek kurulu exe, bulunanlar: {installed_exes}"
     installed_exe = installed_exes[0]
-    shortcut = fake_desktop / "WasteWise.lnk"
+    shortcut = fake_desktop / "WasteWisely.lnk"
     assert fake_local_appdata in installed_exe.parents, f"Kurulum kullanici yazilabilir dizinde degil: {installed_exe}"
     assert "Program Files" not in str(installed_exe), f"Kurulum halen Program Files altina gidiyor: {installed_exe}"
     assert installed_exe.exists(), f"Kurulan exe yok: {installed_exe}"
@@ -160,11 +160,11 @@ def test_windows_silent_installer_creates_runnable_install(tmp_path, built_binar
     finally:
         _stop_process(proc)
 
-    assert payload == {"status": "ok", "service": "WasteWise"}
+    assert payload == {"status": "ok", "service": "WasteWisely"}
 
 
 def test_windows_silent_installer_accepts_explicit_install_dir(tmp_path, built_binaries):
-    explicit_install_dir = tmp_path / "CustomInstallRoot" / "WasteWise"
+    explicit_install_dir = tmp_path / "CustomInstallRoot" / "WasteWisely"
     fake_userprofile = tmp_path / "UserProfile"
     fake_desktop = fake_userprofile / "Desktop"
     fake_desktop.mkdir(parents=True)
@@ -181,7 +181,7 @@ def test_windows_silent_installer_accepts_explicit_install_dir(tmp_path, built_b
         timeout=60,
     )
 
-    installed_exe = explicit_install_dir / "WasteWise.exe"
-    shortcut = fake_desktop / "WasteWise.lnk"
+    installed_exe = explicit_install_dir / "WasteWisely.exe"
+    shortcut = fake_desktop / "WasteWisely.lnk"
     assert installed_exe.exists(), f"Kurulan exe yok: {installed_exe}"
     assert shortcut.exists(), f"Kisayol yok: {shortcut}"
