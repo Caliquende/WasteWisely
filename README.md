@@ -83,6 +83,3 @@ WasteWise/
 
 ## 🤝 Contributing
 Feel free to open issues or submit PRs. This project follows strict QA standards (audited by Software Consulting Agent Company).
-
----
-*Vatana, millete hayırlı olsun.*

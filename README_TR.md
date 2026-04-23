@@ -81,4 +81,4 @@ WasteWise/
 
 ---
 
-*Vatana, millete hayırlı olsun.*
+Bu proje Software Consulting Agent Company kalite denetimlerinden geçmiştir.
