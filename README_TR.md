@@ -1,4 +1,4 @@
-# 🗑️ WasteWisely — Profesyonel Dijital Atık Denetçisi
+# WasteWisely - Profesyonel Dijital Atık Denetçisi
 
 ![WasteWisely Header](assets/header.png)
 
@@ -8,32 +8,40 @@ WasteWisely, "dijital atıkları" tespit etmek ve temizlemek için tasarlanmış
 
 ---
 
-## ✨ Temel Özellikler
+## Temel Özellikler
 
-### 🚀 Performans ve Arayüz
+### Performans ve Arayüz
 - **Native Desktop App:** Python & FastAPI tabanlı, `pywebview` ile sarmalanmış bağımsız pencere deneyimi.
 - **Yerel Windows Diyalogları:** Sistem klasör seçicileriyle tam entegrasyon.
 - **Dinamik Dashboard:** Donut grafikler ve etkileşimli Treemap (Alan Haritası) ile veri görselleştirme.
 - **Çoklu Dil Desteği:** Türkçe, İngilizce ve Arapça (RTL desteği dahil) tam lokalizasyon.
 
-### 🔍 Akıllı Tarama Motoru
+### Akıllı Tarama Motoru
 - **Ağır Bağımlılıklar:** `node_modules`, `.venv` ve devasa build klasörlerini saptar.
 - **Hassas Sızıntılar:** Açıkta kalan `.env`, private key ve kimlik bilgilerini tarar.
 - **Bayatlık Filtresi:** 500MB üzerindeki büyük dosyalar, eğer son 90 gün içinde dokunulmamışsa "atık" olarak işaretlenir.
 - **Sistem Koruması:** `pagefile.sys` gibi kritik Windows sistem dosyalarını otomatik olarak hariç tutar.
 
-### 🛡️ Kurumsal Kurulum ve Güvenlik
+### Kurumsal Kurulum ve Güvenlik
 - **UAC Yetki Yükseltme:** Installer, `C:\Program Files` dizinine yazabilmek için otomatik olarak Yönetici İzni ister.
 - **Güvenli Kurulum:** Güncelleme veya kaldırma sırasında çalışan WasteWisely süreçlerini otomatik tespit eder ve sonlandırır.
 - **İzole Loglama:** Yetki hatalarını önlemek için loglar `%TEMP%\WasteWisely` dizininde tutulur.
 
-### ⚡ Akıllı Aksiyonlar
+### Akıllı Aksiyonlar
 - **Güvenli Arşivleme:** Doğrudan silmek yerine, dosyaları gizli bir `.wastewise_archive` dizini içinde ZIP olarak saklayın. "Ya lazım olursa?" durumları için idealdir.
 - **Kalıcı Temizlik:** Doğrulanmış çöpler için tek tıkla kalıcı silme.
 
 ---
 
-## 💻 Kurulum
+## Gereksinimler
+
+- Tam masaüstü ve installer akışı için Windows önerilir
+- Python 3.9+
+- `pip`
+
+Runtime bağımlılıkları `requirements.txt` içinde listelenir. Ana paket metadata'sı ve opsiyonel ekstra bağımlılıklar `pyproject.toml` içinde tutulur.
+
+## Kurulum
 
 ### 1. Hazır Yükleyici (Önerilen)
 En güncel sürümdeki `WasteWisely_Installer.exe` dosyasını indirin ve çalıştırın.
@@ -43,12 +51,19 @@ En güncel sürümdeki `WasteWisely_Installer.exe` dosyasını indirin ve çalı
 git clone https://github.com/Caliquende/WasteWisely.git
 cd WasteWisely
 pip install -r requirements.txt
-pip install -r requirements-build.txt
 ```
 
 ---
 
-## 🛠️ Kullanım
+## Build Bağımlılıkları
+
+Paketleme ve installer çalışmaları için `pyproject.toml` içindeki build ekstra bağımlılıklarını kullanın:
+
+```bash
+pip install ".[build]"
+```
+
+## Kullanım
 
 ### Masaüstü Uygulaması
 Masaüstü kısayolundan veya şu komutla başlatın:
@@ -69,7 +84,7 @@ python src/main.py daemon C:\Downloads
 
 ---
 
-## 📁 Proje Mimarisi
+## Proje Mimarisi
 
 ```
 WasteWisely/
@@ -91,3 +106,12 @@ WasteWisely/
 Issue açmaktan veya PR göndermekten çekinmeyin. Bu proje, Yazılım QA Mühendisi Can tarafından denetlenmiş sıkı QA standartlarını takip eder.
 
 [LinkedIn](https://www.linkedin.com/in/hamdi-can-ernalbanto%C4%9Fullar%C4%B1/) üzerinden referanslarınızı bekliyorum.
+
+## Doğrulama
+
+```bash
+pytest
+python src/main.py scan .
+```
+
+Paketlemeden önce Windows masaüstü akışını ve installer güncelleme/kaldırma davranışını da doğrulayın.
