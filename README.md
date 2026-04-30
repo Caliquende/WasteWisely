@@ -115,3 +115,13 @@ python src/main.py scan .
 ```
 
 Before packaging, also validate the Windows desktop flow and installer update/uninstall behavior.
+
+## Security
+
+This project follows robust security protocols:
+- **Dependabot:** Automated dependency and GitHub Actions updates.
+- **CodeQL:** Static Application Security Testing (SAST) to detect vulnerabilities.
+- **Security Policy:** Defined in [SECURITY.md](./SECURITY.md).
+- **Proactive Scanning:** Integrated Bandit and pip-audit in CI/CD pipelines.
+- **Pre-commit Hooks:** Local checks for secrets, private keys, and code quality.
+
