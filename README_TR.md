@@ -63,6 +63,26 @@ Paketleme ve installer çalışmaları için `pyproject.toml` içindeki build ek
 pip install ".[build]"
 ```
 
+## Windows .exe Üretme
+
+Build işlemini Windows üzerinde repo kök dizininden çalıştırın:
+
+```bash
+python -m pip install --upgrade pip
+pip install -r requirements.txt
+pip install ".[build]"
+python build.py
+```
+
+Build scripti iki çıktıyı `dist` klasörüne üretir:
+
+```text
+dist\WasteWisely.exe
+dist\WasteWisely_Installer.exe
+```
+
+`WasteWisely.exe` bağımsız masaüstü uygulamasıdır. `WasteWisely_Installer.exe`, uygulamayı `C:\Program Files` altına kuran UAC yetkili installer dosyasıdır.
+
 ## Kullanım
 
 ### Masaüstü Uygulaması
@@ -124,4 +144,3 @@ Bu proje kapsamlı güvenlik protokollerini takip eder:
 - **Güvenlik Politikası:** [SECURITY.md](./SECURITY.md) dosyasında tanımlanmıştır.
 - **Proaktif Tarama:** CI/CD süreçlerine entegre Bandit ve pip-audit araçları.
 - **Pre-commit Kancaları:** Şifre sızıntısı ve kod kalitesi için yerel kontroller.
-

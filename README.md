@@ -63,6 +63,26 @@ For packaging and installer work, use the build extras from `pyproject.toml`:
 pip install ".[build]"
 ```
 
+## Build the Windows .exe
+
+Run the build on Windows from the repository root:
+
+```bash
+python -m pip install --upgrade pip
+pip install -r requirements.txt
+pip install ".[build]"
+python build.py
+```
+
+The build script creates both executables in `dist`:
+
+```text
+dist\WasteWisely.exe
+dist\WasteWisely_Installer.exe
+```
+
+`WasteWisely.exe` is the standalone desktop app. `WasteWisely_Installer.exe` is the UAC-enabled installer that copies the app into `C:\Program Files`.
+
 ## Usage
 
 ### Desktop Application
@@ -124,4 +144,3 @@ This project follows robust security protocols:
 - **Security Policy:** Defined in [SECURITY.md](./SECURITY.md).
 - **Proactive Scanning:** Integrated Bandit and pip-audit in CI/CD pipelines.
 - **Pre-commit Hooks:** Local checks for secrets, private keys, and code quality.
-
