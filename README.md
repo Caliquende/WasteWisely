@@ -31,13 +31,6 @@ WasteWisely is a high-performance Windows desktop application designed to identi
 - **Safe Archival:** Instead of direct deletion, archive folders into compressed ZIPs in a hidden `.wastewise_archive` directory. Perfect for "I might need this later" scenarios.
 - **Direct Purge:** One-click permanent deletion for verified junk.
 
-### New Marketplace Demo
-- **Customer storefront:** Campaign slider, category navigation, search, sorting, favorites, comparison, product detail URLs, cart, and sandbox checkout.
-- **Role dashboards:** Admin, seller, marketing, finance, and support dashboards for marketplace operations.
-- **Local demo assets:** Product images live under `public/demo-products` so the UI does not depend on external image URLs at runtime.
-- **Local Express API:** `server/index.mjs` serves marketplace seed data and sandbox demo orders.
-- **Language toggle:** The marketplace UI is English-first with Turkish localization in `src/i18n.ts`.
-
 ---
 
 ## Requirements
@@ -45,10 +38,8 @@ WasteWisely is a high-performance Windows desktop application designed to identi
 - Windows recommended for the full desktop and installer flow
 - Python 3.9+
 - `pip`
-- Node.js 20+ and `npm` for the marketplace demo
 
 Runtime dependencies are listed in `requirements.txt`. Canonical package metadata and optional extras are listed in `pyproject.toml`.
-Marketplace runtime and build dependencies are listed in `package.json`.
 
 ## Installation
 
@@ -91,33 +82,6 @@ Monitor a directory silently in the background:
 python src/main.py daemon C:\Downloads
 ```
 
-### Marketplace Demo
-```powershell
-npm install
-npm run dev
-```
-
-Default local addresses:
-
-- Customer storefront: `http://localhost:5173`
-- API: `http://localhost:4000`
-- Health check: `http://localhost:4000/api/health`
-
-Demo routes:
-
-- `http://localhost:5173` - public customer storefront
-- `http://localhost:5173/musteri` - customer storefront alias
-- `http://localhost:5173/lilabook-pro-14` - product detail page example
-- `http://localhost:5173/admin` - admin control dashboard
-- `http://localhost:5173/satici1` - seller catalog and stock use-case
-- `http://localhost:5173/satici2` - seller performance and payout use-case
-- `http://localhost:5173/marketing1` - marketing campaign use-case
-- `http://localhost:5173/marketing2` - marketing SEO and moderation use-case
-- `http://localhost:5173/finans1` - finance payment and refund use-case
-- `http://localhost:5173/finans2` - finance payout and reconciliation use-case
-- `http://localhost:5173/destek1` - support order/refund use-case
-- `http://localhost:5173/destek2` - support live support and seller question use-case
-
 ---
 
 ## Project Architecture
@@ -131,22 +95,10 @@ WasteWisely/
 │   ├── api.py          # FastAPI server
 │   └── main.py         # App entrypoint & CLI
 ├── frontend/           # Modern Dark-mode UI (HTML/CSS/JS)
-├── public/             # Marketplace static assets and demo product images
-├── server/             # Marketplace Express API
 ├── installer.py        # Windows Installer wizard (Tkinter)
 ├── build.py            # Automated build & packaging script
-├── package.json        # Marketplace scripts and Node dependencies
 └── tests/              # Comprehensive test suite
 ```
-
-Marketplace extension points:
-
-- `server/index.mjs`: demo API boundary that can later connect to real backend services.
-- `src/api.ts`: frontend API adapter layer.
-- `src/data.ts`: frontend types and fallback seed data.
-- `src/i18n.ts`: English and Turkish UI copy.
-- `src/App.tsx`: demo screen flows, routes, product detail behavior, and dashboard interactions.
-- `src/App.css`: responsive UI and dashboard layout.
 
 ---
 
@@ -160,13 +112,9 @@ Waiting references on [LinkedIn](https://www.linkedin.com/in/hamdi-can-ernalbant
 ```bash
 pytest
 python src/main.py scan .
-npm run lint
-npm run build
 ```
 
 Before packaging, also validate the Windows desktop flow and installer update/uninstall behavior.
-
-The marketplace is intentionally a demo delivery, not a production marketplace backend. Payment, shipping, invoice, analytics, and compliance integrations are mock or sandbox boundaries and need production review before go-live.
 
 ## Security
 
@@ -175,6 +123,5 @@ This project follows robust security protocols:
 - **CodeQL:** Static Application Security Testing (SAST) to detect vulnerabilities.
 - **Security Policy:** Defined in [SECURITY.md](./SECURITY.md).
 - **Proactive Scanning:** Integrated Bandit and pip-audit in CI/CD pipelines.
-- **Marketplace Scanning:** CI includes npm audit, secret scanning, and unsafe JS pattern detection for the marketplace demo.
 - **Pre-commit Hooks:** Local checks for secrets, private keys, and code quality.
 

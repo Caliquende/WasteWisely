@@ -7,8 +7,7 @@ on:
     branches: [ master ]
 
 jobs:
-  python-test:
-    name: Python Tests
+  test:
     runs-on: ubuntu-latest
 
     steps:
@@ -32,28 +31,6 @@ jobs:
         pytest -v tests/test_classifier.py tests/test_scanner.py
       # Note: We skip windows-specific smoke tests on Linux CI
       # and we focus on core logic tests.
-
-  marketplace-build:
-    name: Marketplace Lint And Build
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v4
-
-    - name: Use Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '20'
-        cache: 'npm'
-
-    - name: Install dependencies
-      run: npm ci
-
-    - name: Lint
-      run: npm run lint
-
-    - name: Build
-      run: npm run build
 
   security-scan:
     name: Security Scan
@@ -81,49 +58,3 @@ jobs:
       run: |
         pip-audit || true
 
-  marketplace-security-scan:
-    name: Marketplace Security Scan
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v4
-
-    - name: Use Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '20'
-        cache: 'npm'
-
-    - name: Install dependencies
-      run: npm ci
-
-    - name: Run npm audit
-      run: |
-        echo "Running npm audit for dependency vulnerabilities..."
-        npm audit --audit-level=high || true
-
-    - name: Check for hardcoded secrets
-      run: |
-        FOUND=0
-        for pattern in "sk-" "api_key" "apiKey" "secret_key" "secretKey" "access_token" "password" "BEGIN RSA PRIVATE KEY"; do
-          if grep -rlI "$pattern" --include="*.ts" --include="*.tsx" --include="*.js" --include="*.mjs" . 2>/dev/null | grep -v node_modules | grep -v ".git/" | grep -v "SECURITY.md"; then
-            echo "Warning: Potential secret pattern found: $pattern"
-            FOUND=1
-          fi
-        done
-        if [ "$FOUND" -eq 0 ]; then
-          echo "No hardcoded secrets detected."
-        fi
-
-    - name: Check for unsafe JS patterns
-      run: |
-        FOUND=0
-        for pattern in "eval(" "document.write(" "dangerouslySetInnerHTML"; do
-          if grep -rnI "$pattern" --include="*.ts" --include="*.tsx" --include="*.js" . 2>/dev/null | grep -v node_modules | grep -v ".git/"; then
-            echo "Warning: Unsafe pattern found: $pattern"
-            FOUND=1
-          fi
-        done
-        if [ "$FOUND" -eq 0 ]; then
-          echo "No unsafe patterns detected."
-        fi

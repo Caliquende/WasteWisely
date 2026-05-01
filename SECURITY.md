@@ -21,7 +21,3 @@ If you discover a security vulnerability in WasteWisely, please follow responsib
 - **Dependencies:** All dependencies are monitored via Dependabot for known vulnerabilities.
 - **Static Analysis:** Bandit SAST scans run on every push and pull request.
 - **Dependency Auditing:** pip-audit checks installed packages against the CVE database.
-- **Marketplace Dependencies:** npm dependencies are monitored via Dependabot and npm audit.
-- **JavaScript/TypeScript SAST:** CodeQL and CI checks scan the marketplace demo for unsafe JavaScript patterns.
-- **CORS:** Server-side CORS configuration in `server/index.mjs` is suitable for local demo use and must be reviewed before production deployment.
-- **Input Validation:** Marketplace demo inputs are sandbox/demo boundaries; production services must validate and sanitize input server-side.
