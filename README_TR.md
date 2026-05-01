@@ -31,6 +31,13 @@ WasteWisely, "dijital atıkları" tespit etmek ve temizlemek için tasarlanmış
 - **Güvenli Arşivleme:** Doğrudan silmek yerine, dosyaları gizli bir `.wastewise_archive` dizini içinde ZIP olarak saklayın. "Ya lazım olursa?" durumları için idealdir.
 - **Kalıcı Temizlik:** Doğrulanmış çöpler için tek tıkla kalıcı silme.
 
+### New Marketplace Demo
+- **Müşteri vitrini:** Kampanya slider'ı, kategori navigasyonu, arama, sıralama, favori, karşılaştırma, ürün detay URL'leri, sepet ve sandbox checkout.
+- **Rol dashboardları:** Marketplace operasyonları için admin, satıcı, marketing, finans ve destek ekranları.
+- **Lokal demo görselleri:** Ürün görselleri runtime sırasında dış URL bağımlılığı olmasın diye `public/demo-products` altında tutulur.
+- **Lokal Express API:** `server/index.mjs`, marketplace seed verisini ve sandbox demo siparişlerini sağlar.
+- **Dil toggle'ı:** Marketplace arayüzü İngilizce varsayılanla gelir; Türkçe lokalizasyon `src/i18n.ts` içindedir.
+
 ---
 
 ## Gereksinimler
@@ -38,8 +45,10 @@ WasteWisely, "dijital atıkları" tespit etmek ve temizlemek için tasarlanmış
 - Tam masaüstü ve installer akışı için Windows önerilir
 - Python 3.9+
 - `pip`
+- Marketplace demosu için Node.js 20+ ve `npm`
 
 Runtime bağımlılıkları `requirements.txt` içinde listelenir. Ana paket metadata'sı ve opsiyonel ekstra bağımlılıklar `pyproject.toml` içinde tutulur.
+Marketplace runtime ve build bağımlılıkları `package.json` içinde tutulur.
 
 ## Kurulum
 
@@ -82,6 +91,33 @@ Bir dizini arka planda sessizce izlemek için:
 python src/main.py daemon C:\Downloads
 ```
 
+### Marketplace Demo
+```powershell
+npm install
+npm run dev
+```
+
+Varsayılan lokal adresler:
+
+- Müşteri vitrini: `http://localhost:5173`
+- API: `http://localhost:4000`
+- Health check: `http://localhost:4000/api/health`
+
+Demo URL'leri:
+
+- `http://localhost:5173` - genel müşteri vitrini
+- `http://localhost:5173/musteri` - müşteri vitrini alias
+- `http://localhost:5173/lilabook-pro-14` - ürün detay sayfası örneği
+- `http://localhost:5173/admin` - admin kontrol dashboardu
+- `http://localhost:5173/satici1` - satıcı katalog ve stok senaryosu
+- `http://localhost:5173/satici2` - satıcı performans ve hakediş senaryosu
+- `http://localhost:5173/marketing1` - marketing kampanya senaryosu
+- `http://localhost:5173/marketing2` - marketing SEO ve moderasyon senaryosu
+- `http://localhost:5173/finans1` - finans ödeme ve iade senaryosu
+- `http://localhost:5173/finans2` - finans hakediş ve mutabakat senaryosu
+- `http://localhost:5173/destek1` - destek sipariş/iade senaryosu
+- `http://localhost:5173/destek2` - destek canlı destek ve satıcıya soru senaryosu
+
 ---
 
 ## Proje Mimarisi
@@ -95,10 +131,22 @@ WasteWisely/
 │   ├── api.py          # FastAPI backend sunucusu
 │   └── main.py         # Uygulama giriş noktası ve CLI
 ├── frontend/           # Modern Dark-mode UI (HTML/CSS/JS)
+├── public/             # Marketplace statik assetleri ve demo ürün görselleri
+├── server/             # Marketplace Express API
 ├── installer.py        # Windows Kurulum Sihirbazı (Tkinter)
 ├── build.py            # Otomatik derleme ve paketleme scripti
+├── package.json        # Marketplace scriptleri ve Node bağımlılıkları
 └── tests/              # Kapsamlı test paketi
 ```
+
+Marketplace genişletme noktaları:
+
+- `server/index.mjs`: ileride gerçek backend servislerine bağlanabilecek demo API sınırı.
+- `src/api.ts`: frontend API adapter katmanı.
+- `src/data.ts`: frontend tipleri ve fallback seed verisi.
+- `src/i18n.ts`: İngilizce ve Türkçe arayüz metinleri.
+- `src/App.tsx`: demo ekran akışları, route'lar, ürün detay davranışı ve dashboard etkileşimleri.
+- `src/App.css`: responsive UI ve dashboard layout'u.
 
 ---
 
@@ -112,9 +160,13 @@ Issue açmaktan veya PR göndermekten çekinmeyin. Bu proje, Yazılım QA Mühen
 ```bash
 pytest
 python src/main.py scan .
+npm run lint
+npm run build
 ```
 
 Paketlemeden önce Windows masaüstü akışını ve installer güncelleme/kaldırma davranışını da doğrulayın.
+
+Marketplace bilinçli olarak demo teslimidir; production marketplace backend'i değildir. Ödeme, kargo, fatura, analitik ve uyumluluk entegrasyonları mock veya sandbox sınırındadır ve canlıya çıkmadan önce production review gerektirir.
 
 ## Güvenlik
 
@@ -123,5 +175,6 @@ Bu proje kapsamlı güvenlik protokollerini takip eder:
 - **CodeQL:** Güvenlik açıklarını tespit etmek için Statik Uygulama Güvenlik Testi (SAST).
 - **Güvenlik Politikası:** [SECURITY.md](./SECURITY.md) dosyasında tanımlanmıştır.
 - **Proaktif Tarama:** CI/CD süreçlerine entegre Bandit ve pip-audit araçları.
+- **Marketplace Taraması:** CI, marketplace demosu için npm audit, secret scanning ve unsafe JS pattern kontrolü içerir.
 - **Pre-commit Kancaları:** Şifre sızıntısı ve kod kalitesi için yerel kontroller.
 

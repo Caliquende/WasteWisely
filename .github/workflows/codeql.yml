@@ -10,7 +10,7 @@ on:
 
 jobs:
   analyze:
-    name: Analyze Python
+    name: Analyze
     runs-on: ubuntu-latest
     permissions:
       actions: read
@@ -20,7 +20,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        language: [ "python" ]
+        language: [ "python", "javascript-typescript" ]
 
     steps:
       - name: Checkout repository

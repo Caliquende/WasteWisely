@@ -6,12 +6,25 @@
 !src/**
 !frontend/
 !frontend/**
+!public/
+!public/**
+!server/
+!server/**
 !tests/
 !tests/**
 !installer.py
 !build.py
 !assets/
 !assets/**
+!index.html
+!package.json
+!package-lock.json
+!vite.config.ts
+!tsconfig.json
+!tsconfig.app.json
+!tsconfig.node.json
+!eslint.config.js
+!.env.example
 
 # Allow essential project metadata (not in user list but required for GitHub/pip)
 !README.md
@@ -30,9 +43,24 @@
 **/__pycache__/
 **/*.py[cod]
 **/*.log
+node_modules/
 build/
 dist/
+dist-ssr/
 *.spec
+.env
+.env.*
+!.env.example
+*.local
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
 
 .agent
 .pytest_cache
