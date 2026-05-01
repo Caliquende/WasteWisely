@@ -22,6 +22,8 @@
 !HOW_TO_USE.md
 !.github/
 !.github/**
+!SECURITY.md
+!.pre-commit-config.yaml
 
 
 # Re-ignore Python junk inside unignored folders
